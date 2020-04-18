@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Mis notas</h1>
+    <form action="{% url 'miapp:guardar' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="texto" placeholder="Inserta tu nota">
+        <input type="submit" value="Agregar">
+    </form>
+
+    <hr>
+
+    <ul>
+        {% for nota in notas %}
+            <li>{{ nota.texto }} <small>{{ nota.pub_date }}</small></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
